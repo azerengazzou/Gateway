@@ -1,0 +1,672 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7287"
+  },
+
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/gateway/AllFields/{fileId}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/FieldAPI/GetAllFieldsByFileId?fileId={fileId}&pageNumber=1&pageSize=5000",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ],
+      "FileCacheOptions": {
+        "TtlSeconds": 60
+      }
+    },
+    //Authentication
+    {
+      "UpstreamPathTemplate": "/gateway/Login",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7203
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Auth/authenticate"
+    },
+
+    {
+      "UpstreamPathTemplate": "/gateway/Register",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7203
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Auth/register"
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Users",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Auth",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7203
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Auth/{userId}",
+      "UpstreamHttpMethod": [ "Get", "Delete", "Put" ],
+      "DownstreamPathTemplate": "/api/Auth/{userId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7203
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/TicketUpdate/{ticketId}",
+      "UpstreamHttpMethod": [ "Put" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/Ticket/{ticketId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ],
+      "UpstreamHttpHeaders": {
+        "Content-Type": "application/json"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Tickets",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/Ticket",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/AllTickets",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/GetFullTickets",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Ticket/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/Ticket/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Sujets",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/SujetTicket",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Sujet/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/SujetTicket/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/TicketsByUser",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/GetTicketsByUser?userIdRef={userIdRef}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ],
+      "AddQueriesToDownstreamPath": {
+        "userIdRef": "{userIdRef}"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/NewTicket",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/Ticket",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Ticket/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/Ticket/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Discussion",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/Discussion",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/NewMessage",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/Message",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MessagesByDiscussion/{discussionId}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/Message/discussion/{discussionId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/AddFiles",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/FileAPI?UserRef={UserRef}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Doctor"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/DeleteFile/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "DownstreamPathTemplate": "/api/FileAPI/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Doctor"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Files",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/FileAPI",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Doctor"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Files/{userIdRef}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/GetFilesByUser?{userIdRef}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Doctor"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/FileById/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamPathTemplate": "/api/FileAPI/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MessageType",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/FileMessagesAPI",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MessageType&Records",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/FileMessagesAPI/GetMessagesAndRecords",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MessageType",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/FileMessagesAPI",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MessageType/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "DownstreamPathTemplate": "/api/FileMessagesAPI/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/RecordConfig",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/RecordsAPI",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
+    }
+    /**
+    {
+
+    //allSujets
+    {
+      "UpstreamPathTemplate": "/gateway/Sujets",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/SujetTicket",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    }
+
+
+
+    {
+      "UpstreamPathTemplate": "/gateway/Sujet/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/SujetTicket/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    }
+
+
+    {
+      "UpstreamPathTemplate": "/gateway/Ticket/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/Ticket/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    }
+
+
+
+      "UpstreamPathTemplate": "/gateway/Auth/{userId}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamPathTemplate": "api/Auth/{userId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7203
+        }
+      ]
+    }
+    //Efact Routes
+
+    {
+      "UpstreamPathTemplate": "/gateway/AddFiles",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/FileAPI?UserRef={UserRef}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Doctor"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/DeleteFile/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "DownstreamPathTemplate": "/api/FileAPI/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Doctor"
+      }
+    },
+
+    {
+      "UpstreamPathTemplate": "/gateway/Files",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/FileAPI",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Doctor"
+      }
+    },
+
+    {
+      "UpstreamPathTemplate": "/gateway/Files/{userIdRef}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/GetFilesByUser?{userIdRef}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Doctor"
+      }
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Files/{id}",
+      "UpstreamHttpMethod": [ "Get", "Delete" ],
+      "DownstreamPathTemplate": "/api/FileAPI/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
+    },
+
+    //Message Type Routes
+    {
+      "UpstreamPathTemplate": "/gateway/MessageType",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/FileMessagesAPI",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MessageType",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/FileMessagesAPI",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MessageType&Records",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/FileMessagesAPI/GetMessagesAndRecords",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/MessageType/{id}",
+      "UpstreamHttpMethod": [ "Delete" ],
+      "DownstreamPathTemplate": "/api/FileMessagesAPI/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
+    },
+
+    //Records Config Routes
+    {
+      "UpstreamPathTemplate": "/gateway/RecordConfig",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/RecordsAPI",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ]
+    },
+
+    //Fields Routes
+    {
+      "UpstreamPathTemplate": "/gateway/AllFields/{fileId}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/FieldAPI/GetAllFieldsByFileId?fileId={fileId}&pageNumber=1&pageSize=5000",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7289
+        }
+      ],
+      "FileCacheOptions": {
+        "TtlSeconds": 60
+      }
+    },
+
+
+    //TicketsRoutes
+
+    //allTickets
+    {
+      "UpstreamPathTemplate": "/gateway/Tickets",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/Ticket",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+
+    {
+      "UpstreamPathTemplate": "/gateway/AllTickets",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/GetFullTickets",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+
+    //allSujets
+    {
+      "UpstreamPathTemplate": "/gateway/Sujets",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/SujetTicket",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Sujet/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/SujetTicket/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    },
+    {
+      "UpstreamPathTemplate": "/gateway/Ticket/{id}",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/EfactTicketAPI/Ticket/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7062
+        }
+      ]
+    }
+  **/
+  ]
+}
